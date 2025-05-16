@@ -8,7 +8,7 @@ hook.Add("PlayerInitialSpawn", "DirtyMoney_InsertDefaultValues", function(ply)
     local data = sql.Query("SELECT * FROM dirtymoney WHERE steamid=" .. id )
 
     if not (data) then
-        sql.Query("INSERT INTO dirtymoney(steamid, money) VALUES(" .. id .. ", 0)")
+        sql.Query("INSERT INTO dirtymoney(steamid, money) VALUES(" .. id .. ", ".. DIRTYMONEY_CFG.StartingAmount .. ")")
         ply:SetNW2Int("dirtymoney", 0)
     else 
         ply:SetNW2Int("dirtymoney", tonumber(data[1].money))
